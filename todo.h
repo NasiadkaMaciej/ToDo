@@ -9,10 +9,10 @@ FILE *openFile(char mode[], bool isGlobal);
 FILE *openDB(char mode[]);
 
 // tasks.c
-bool create(char task[], bool isGlobal);
+void create(char task[], bool isGlobal);
 void list();
 void showList(bool isPublic);
-void del(char task[], bool isGlobal);
+void del(int task, bool isGlobal);
 
 // tools.c
 void help();
