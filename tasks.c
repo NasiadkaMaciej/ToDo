@@ -4,22 +4,20 @@
 #include <stdbool.h>
 #include "todo.h"
 
-void create(char task[], bool isGlobal)
+void create(char *task[], int words, bool isGlobal)
 {
     FILE *file = openFile("a", isGlobal); // Append to file
 
-    do
+    for (int i = 2; i < words; i++)
     {
-        static unsigned int i = 0;
-        if (task[i] == '\0')
-            break;
-        i++;
-    } while (true);
-
-    fprintf(file, "%s\n", task); // Write to file
+        fprintf(file, "%s", task[i]); // Write word to file
+        fprintf(file, "%s", " ");     // Write space to file
+    }
+    fprintf(file, "\n");
     fclose(file);
     exit(EXIT_SUCCESS);
 }
+
 void list()
 {
     FILE *file;

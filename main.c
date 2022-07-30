@@ -2,7 +2,6 @@
 #include <string.h>
 #include "todo.h"
 
-
 int main(int argv, char *argc[])
 {
 
@@ -30,15 +29,12 @@ int main(int argv, char *argc[])
         else
             usage();
     }
-    else if (argv == 3)
+    else if (argv > 2)
     {
         if (!strcmp(argc[1], "-c"))
-            // figure out how to pass everything after 2 parameter
-            create(argc[2], global);
+            create(argc, argv, global);
         else if (!strcmp(argc[1], "-cc"))
-            // figure out how to pass everything after 2 parameter
-            // Save location do db
-            create(argc[2], local);
+            create(argc, argv, local);
         else if (!strcmp(argc[1], "-r"))
             del(atoi(argc[2]), global);
         else if (!strcmp(argc[1], "-rc"))
@@ -46,7 +42,5 @@ int main(int argv, char *argc[])
         else
             usage();
     }
-    else
-        usage();
     exit(EXIT_SUCCESS);
 }

@@ -18,10 +18,10 @@ Tasks from current directory:
 
 ## Creating
 Global task:  
-` todo -c "Task description"`  
+` todo -c Task description`  
 
 Task in current directory:  
-` todo -cc "Task description"`
+` todo -cc Task description`
 
 ## Removing
 Global task:  

@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include <stdbool.h>
 
 void usage()
 {
@@ -19,7 +17,7 @@ void help()
 
 	printf(" -c                        Create global task\n");
 	printf(" -cc                       Create task in current directory\n");
-	printf("Example: todo -cc \"Buy apples\"\n");
+	printf("Example: todo -cc Buy apples\n");
 	printf("------------------------Create-----------------------------\n");
 
 	printf(" -r                        Remove global task\n");
