@@ -27,16 +27,16 @@ void list()
     {
         printf("\033[32mGlobal tasks: \033[0m\n");
         showList(global);
+        fclose(file);
     }
-    fclose(file);
 
     file = openFile("r", local);
     if (file != NULL)
     {
         printf("\033[32mLocal tasks: \033[0m\n");
         showList(local);
+        fclose(file);
     }
-    fclose(file);
     exit(EXIT_SUCCESS);
 }
 void showList(bool isPublic)
