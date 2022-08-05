@@ -52,13 +52,12 @@ void showList(bool isPublic)
     do
     {
         char c = fgetc(file);
-        if (c == EOF && i == 1)
+        if (c == EOF)
         {
-            printf("Empty!\n");
+            if (i == 1)
+                printf("Empty!\n");
             break;
         }
-        if (c == EOF)
-            break;
         if (printNum)
         {
             printf("%i: ", i);
@@ -82,7 +81,6 @@ void del(int task, bool isGlobal)
     fseek(file, 0, SEEK_SET);
 
     char buffer[fileSize];
-
     unsigned int i = 0;
     bool isFound = false;
 
