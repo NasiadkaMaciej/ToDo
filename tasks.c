@@ -42,11 +42,11 @@ void list()
 void showList(bool isPublic)
 {
     FILE *file = openFile("r", isPublic);
-
     bool printNum = true;
+    int i = 1;
+
     do
     {
-        static int i = 1;
         char c = fgetc(file);
         if (c == EOF)
         {
