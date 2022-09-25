@@ -41,16 +41,12 @@ void list()
 }
 void showList(bool isPublic)
 {
-    FILE *file;
-    if (isPublic)
-        file = openFile("r", global);
-    else
-        file = openFile("r", local);
+    FILE *file = openFile("r", isPublic);
 
-    int i = 1;
     bool printNum = true;
     do
     {
+        static int i = 1;
         char c = fgetc(file);
         if (c == EOF)
         {
@@ -107,7 +103,6 @@ void del(int task, bool isGlobal)
     if (isFound)
     {
         freopen(NULL, "w", file);
-
         for (i = 0;; i++)
         {
             if (buffer[i] == '\0')

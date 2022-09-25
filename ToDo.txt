@@ -1,3 +1,2 @@
-Implement database for local tasks
 Prevent adding duplicate tasks
 Add option to remove tasks by their name
