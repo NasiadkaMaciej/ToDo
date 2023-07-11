@@ -25,6 +25,7 @@ FILE *openFile(char mode[], bool isGlobal)
 	strcpy(fullPath, directory);
 	strcat(fullPath, filePath);
 	FILE *file = fopen(fullPath, mode);
+	free(fullPath);
 	return file;
 }
 

@@ -5,7 +5,7 @@ Simple to-do list app with tasks per directory and global
 
 # Building and installation
 `$ make`  
-`$ sudo make install`
+`# make install`
 
 # Usage
 
