@@ -6,7 +6,6 @@
 
 // files.c
 FILE *openFile(char mode[], bool isGlobal);
-FILE *openDB(char mode[]);
 
 // tasks.c
 void create(char* task[], int words, bool isGlobal);

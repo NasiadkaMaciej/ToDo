@@ -3,12 +3,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include <unistd.h>
-
+#include <limits.h>
 // open global/local file to read/write
 FILE *openFile(char mode[], bool isGlobal)
 {
-	char *directory = "";
-	char *filePath = "";
+	char *directory;
+	char *filePath;
 
 	if (isGlobal)
 	{
@@ -17,7 +17,7 @@ FILE *openFile(char mode[], bool isGlobal)
 	}
 	else
 	{
-		directory = getcwd(NULL, 200);
+		directory = getcwd(NULL, PATH_MAX);
 		filePath = "/ToDo.txt";
 	}
 
@@ -26,18 +26,5 @@ FILE *openFile(char mode[], bool isGlobal)
 	strcat(fullPath, filePath);
 	FILE *file = fopen(fullPath, mode);
 	free(fullPath);
-	return file;
-}
-
-// open file containing all locations of ToDo.txt files
-FILE *openDB(char mode[])
-{
-	char *fullPath = strcat(getenv("HOME"), "/.local/share/db.txt");
-	FILE *file = fopen(fullPath, mode);
-	if (file == NULL)
-	{
-		fprintf(stderr, "Can't access: %s \n", fullPath);
-		exit(EXIT_FAILURE);
-	}
 	return file;
 }
