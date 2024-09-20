@@ -11,19 +11,23 @@ int main(int argv, char *argc[])
     // -c  - Create global task
     // -cc - Create task in current directory
 
-    // -r  - Remove global task
-    // -rc - Remove task in current directory
+    // -r  - Remove global tasks
+    // -rc - Remove tasks in current directory
 
     // -h  - Help
 
-    if (argv == 1)
-        list();
+    if (argv == 1){
+		list(global);
+		list(local);
+	}
     else if (argv == 2)
     {
-        if (!strcmp(argc[1], "-l"))
-            list();
+        if (!strcmp(argc[1], "-l")){
+			list(global);
+			list(local);
+		}
         else if (!strcmp(argc[1], "-lc"))
-            showList(local);
+            list(local);
         else if (!strcmp(argc[1], "-h") || !strcmp(argc[1], "--help"))
             help();
         else
@@ -35,10 +39,10 @@ int main(int argv, char *argc[])
             create(argc, argv, global);
         else if (!strcmp(argc[1], "-cc"))
             create(argc, argv, local);
-        else if (!strcmp(argc[1], "-r"))
-            del(atoi(argc[2]), global);
+        else if (!strcmp(argc[1], "-r")) // +2, -2 to not pass program and option
+			delMulti(argc + 2, argv - 2, global);
         else if (!strcmp(argc[1], "-rc"))
-            del(atoi(argc[2]), local);
+			delMulti(argc + 2, argv - 2, local);
         else
             usage();
     }

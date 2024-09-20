@@ -25,10 +25,10 @@ Task in current directory:
 
 ## Removing
 Global task:  
-` todo -r {Task number from list}`
+` todo -r {Task number (or multiple numbers) from list}`
 
 Task in current directory:  
-` todo -rc {Task number from list}`
+` todo -rc {Task number (or multiple numbers) from list}`
 
 ## Help
 ` todo -h ` or ` todo --help `

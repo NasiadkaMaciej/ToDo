@@ -1,2 +1,3 @@
 Prevent adding duplicate tasks
 Add option to remove tasks by their name
+Add option to move task place? 

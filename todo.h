@@ -9,9 +9,9 @@ FILE *openFile(char mode[], bool isGlobal);
 
 // tasks.c
 void create(char* task[], int words, bool isGlobal);
-void list();
-void showList(bool isPublic);
-void del(int task, bool isGlobal);
+void list(bool isGlobal);
+void delMulti(char* tasks[], int number, bool isGlobal);
+
 
 // tools.c
 void help();
