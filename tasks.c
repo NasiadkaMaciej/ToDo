@@ -15,69 +15,62 @@ void create(char *task[], int words, bool isGlobal) {
 
 void list(bool isGlobal) {
 	FILE *file = openFile("r", isGlobal);
-	bool printNum = true;
-	int i = 1;
+	char *line = NULL;
+	size_t len = 0;
+
 	if (file == NULL)
-		exit(EXIT_FAILURE);
+		return;
 	printf(isGlobal ? "\033[32mGlobal tasks: \033[0m\n" : "\033[32mLocal tasks: \033[0m\n");
-	do {
-		char c = fgetc(file);
-		if (c == EOF) {
-			if (i == 1)
-				printf("Empty!\n");
-			break;
+	if ((getline(&line, &len, file)) == -1)
+		printf("Empty!\n");
+	else {
+		int lineNumber = 1;
+		printf("%d: %s", lineNumber, line);
+		lineNumber++;
+		while ((getline(&line, &len, file)) != -1) {
+			printf("%d: %s", lineNumber, line);
+			lineNumber++;
 		}
-		if (printNum) {
-			printf("%i: ", i);
-			printNum = false;
-			i++;
-		}
-		if (c == '\n')
-			printNum = true;
-		printf("%c", c);
-	} while (true);
+	}
+
+	free(line);
 	fclose(file);
 }
 
-void del(int task, bool isGlobal) {
-	unsigned long numberOfTasks = 1;
+void del(const int task, bool isGlobal) {
+	unsigned int numberOfTasks = 1;
 
 	FILE *file = openFile("r", isGlobal);
 	fseek(file, 0, SEEK_END);
-	int fileSize = ftell(file);
+	unsigned long fileSize = ftell(file);
 	fseek(file, 0, SEEK_SET);
+	rewind(file);
 
-	char buffer[fileSize];
+	char *buffer = (char *)malloc(fileSize + 1);
 	unsigned int i = 0;
 	bool isFound = false;
 
-	do {
-		char c = getc(file);
-		if (c == EOF) {
-			buffer[i] = '\0';
-			break;
-		}
-		if (numberOfTasks != task) {
-			buffer[i] = c;
-			i++;
-		} else if (!isFound)
+	char c;
+	while ((c = getc(file)) != EOF)
+		if (numberOfTasks != task)
+			buffer[i++] = c;
+		else
 			isFound = true;
+	if (c == '\n')
+		numberOfTasks++;
 
-		if (c == '\n')
-			numberOfTasks++;
-	} while (true);
+	buffer[i] = '\0';
 
 	if (isFound) {
 		freopen(NULL, "w", file);
-		for (i = 0;; i++) {
-			if (buffer[i] == '\0')
-				break;
-			fputc(buffer[i], file);
-		}
+		fputs(buffer, file);
 	} else {
 		printf("\033[31mNo task of id %i was found\033[0m\n", task);
+		free(buffer);
+		fclose(file);
 		exit(EXIT_FAILURE);
 	}
+	free(buffer);
 	fclose(file);
 }
 
@@ -88,9 +81,8 @@ void delMulti(char *tasks[], int numberOfTasks, bool isGlobal) {
 	for (int i = 0; i < numberOfTasks; i++)
 		tasksToDelete[i] = atoi(tasks[i]);
 
-	bool duplicates = false;
 	for (int i = 0; i < numberOfTasks; i++) {
-		for (int j = i+1; j < numberOfTasks; j++) {
+		for (int j = i + 1; j < numberOfTasks; j++) {
 			if (tasksToDelete[i] == tasksToDelete[j]) {
 				printf("\033[31mDuplicate task number %i\033[0m\n", tasksToDelete[i]);
 				exit(EXIT_FAILURE);
@@ -100,7 +92,6 @@ void delMulti(char *tasks[], int numberOfTasks, bool isGlobal) {
 
 	qsort(tasksToDelete, numberOfTasks, sizeof(int), compare);
 
-	for (int i = 0; i < numberOfTasks; i++) {
+	for (int i = 0; i < numberOfTasks; i++)
 		del(tasksToDelete[i], isGlobal);
-	}
 }

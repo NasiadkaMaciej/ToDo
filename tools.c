@@ -1,14 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void usage()
-{
+void usage() {
 	printf("\033[31mWrong usage, get help using: \033[0m\n");
 	printf("todo --help\n");
 	exit(EXIT_FAILURE);
 }
-void help()
-{   
+void help() {
 	printf("-------------------------List------------------------------\n");
 	printf(" No arguments,\n");
 	printf(" -l                        List all tasks\n");
@@ -25,9 +23,8 @@ void help()
 	printf(" -rc                       Remove tasks in current directory\n");
 	printf("Get ID using: todo -l or todo -lc\n");
 	printf("Example: todo -r 7 or todo -r 7 5 9\n");
-	
+
 	printf("-------------------------Help------------------------------\n");
 	printf(" -h, --help                Display help and exit\n");
 	exit(EXIT_SUCCESS);
 }
-

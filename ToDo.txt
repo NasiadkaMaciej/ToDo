@@ -1,3 +1,5 @@
 Prevent adding duplicate tasks
 Add option to remove tasks by their name
 Add option to move task place? 
+Add option to see tasks from other folders?
+When removing by name, autocomplete? 
