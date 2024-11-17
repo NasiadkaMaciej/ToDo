@@ -51,13 +51,14 @@ void del(const int task, bool isGlobal) {
 	bool isFound = false;
 
 	char c;
-	while ((c = getc(file)) != EOF)
+	while ((c = getc(file)) != EOF) {
 		if (numberOfTasks != task)
 			buffer[i++] = c;
 		else
 			isFound = true;
-	if (c == '\n')
-		numberOfTasks++;
+		if (c == '\n')
+			numberOfTasks++;
+	}
 
 	buffer[i] = '\0';
 
