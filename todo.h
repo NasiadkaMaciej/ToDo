@@ -8,9 +8,9 @@
 FILE *openFile(const char mode[], bool isGlobal);
 
 // tasks.c
-void create(char *task[], int words, bool isGlobal);
+void create(const char *task[], uint words, bool isGlobal);
 void list(bool isGlobal);
-void delMulti(char *tasks[], int numberOfTasks, bool isGlobal);
+void delMulti(const char *tasks[], uint numberOfTasks, bool isGlobal);
 
 // tools.c
 void help();

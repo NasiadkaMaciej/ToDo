@@ -1,7 +1,7 @@
 # ToDo
 Simple to-do list app with tasks per directory and global
 
-![App screenshot](https://nasiadka.pl/projects/ToDo/ToDo.png)
+![App screenshot](https://nasiadka.pl/project/todo-cpp/ToDo.png)
 
 # Building and installation
 `$ make`  
