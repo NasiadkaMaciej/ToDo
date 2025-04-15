@@ -1,5 +1,5 @@
 todo: *.c *.h
-	cc *.c -o todo
+	gcc *.c -o todo -Wall -Wextra -pedantic -O2
 clean:
 	-rm todo
 install:

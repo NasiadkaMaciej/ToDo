@@ -1,8 +1,10 @@
+typedef unsigned int uint;
+
 #include "todo.h"
 #include <stdlib.h>
 #include <string.h>
 
-int main(int argv, char *argc[]) {
+int main(const int argv, const char *argc[]) {
 
 	// -l  - List global tasks
 	// -lc  - List tasks in current directory
